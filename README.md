@@ -30,16 +30,17 @@ input (string): The input string consisting of digits, spaces, backspace (*), an
 A string representing the decoded text from the input.
 
 ### Example
+
 Console.WriteLine(PhonePad.OldPhonePad("33#"));          // Output: E
 Console.WriteLine(PhonePad.OldPhonePad("227*#"));        // Output: B
 Console.WriteLine(PhonePad.OldPhonePad("4433555 555666#")); // Output: HELLO
 Console.WriteLine(PhonePad.OldPhonePad("8 88777444666*664#")); // Output: TURING
 
 ## Implementation Details
-### Button Press Handling: Keeps track of the current button and the number of presses to determine the correct character.
-### Backspace Processing: Removes the last character from the output if the backspace (*) is encountered.
-### Space Handling: Finalizes the current sequence of button presses on encountering a space.
-### Send Button Handling: Completes the current input sequence on encountering the send button (#).
+Button Press Handling: Keeps track of the current button and the number of presses to determine the correct character.
+Backspace Processing: Removes the last character from the output if the backspace (*) is encountered.
+Space Handling: Finalizes the current sequence of button presses on encountering a space.
+Send Button Handling: Completes the current input sequence on encountering the send button (#).
 
 ## Testing
 The code includes test cases to verify the correctness of the implementation. Ensure that all tests pass to validate the functionality.
