@@ -2,7 +2,7 @@
 ## Description
 This C# application simulates an old phone keypad to convert sequences of button presses into text. The keypad includes letters, a backspace key (*), and a send button (#). Each button on the keypad represents multiple letters, and pressing a button multiple times cycles through the letters associated with that button.
 
-##Features
+## Features
 Character Mapping: Maps button sequences to their corresponding letters based on the old phone keypad layout.
 Backspace Handling: Correctly processes backspace (*) to remove the last character from the output.
 Pause Handling: Recognizes space ( ) as a pause to finalize the current sequence before starting a new one.
