@@ -32,8 +32,11 @@ A string representing the decoded text from the input.
 ### Example
 
 `Console.WriteLine(PhonePad.OldPhonePad("33#"));          // Output: E`
+
 `Console.WriteLine(PhonePad.OldPhonePad("227*#"));        // Output: B`
+
 `Console.WriteLine(PhonePad.OldPhonePad("4433555 555666#")); // Output: HELLO`
+
 `Console.WriteLine(PhonePad.OldPhonePad("8 88777444666*664#")); // Output: TURING`
 
 ## Implementation Details
