@@ -15,8 +15,8 @@ public class PhonePad
         "PQRS", // 7
         "TUV",  // 8
         "WXYZ", // 9
-        "",     // *
-        "",     // #
+        "",     // * (Backspace)
+        ""      // # (Send)
     };
 
     public static string OldPhonePad(string input)
@@ -44,6 +44,14 @@ public class PhonePad
             if (char.IsWhiteSpace(c))
             {
                 // Space indicates a pause, reset last button press tracking
+                if (lastButton != -1)
+                {
+                    string mapping = KeyMappings[lastButton];
+                    if (mapping.Length > 0)
+                    {
+                        output.Append(mapping[(pressCount - 1) % mapping.Length]);
+                    }
+                }
                 lastButton = -1;
                 pressCount = 0;
                 continue;
@@ -92,8 +100,8 @@ class Program
     static void Main()
     {
         Console.WriteLine(PhonePad.OldPhonePad("33#")); // Output: E
-        Console.WriteLine(PhonePad.OldPhonePad("227*#")); // Output: B
+        Console.WriteLine(PhonePad.OldPhonePad("22#")); // Output: B
         Console.WriteLine(PhonePad.OldPhonePad("4433555 555666#")); // Output: HELLO
-        Console.WriteLine(PhonePad.OldPhonePad("8 88777444666*664#")); // Output: ????
+        Console.WriteLine(PhonePad.OldPhonePad("8 88777444664#")); // Output: TURING
     }
 }
