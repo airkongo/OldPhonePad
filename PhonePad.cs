@@ -1,96 +1,87 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 public class PhonePad
 {
-    private static readonly string[] KeyMappings = 
-    {
-        " ",    // 0
-        "",     // 1
-        "ABC",  // 2
-        "DEF",  // 3
-        "GHI",  // 4
-        "JKL",  // 5
-        "MNO",  // 6
-        "PQRS", // 7
-        "TUV",  // 8
-        "WXYZ", // 9
-        "",     // * (Backspace)
-        ""      // # (Send)
-    };
-
     public static string OldPhonePad(string input)
     {
-        StringBuilder output = new StringBuilder();
-        int lastButton = -1;
+        // Dictionary to map number to its corresponding letters
+        var keyMap = new Dictionary<char, string>
+        {
+            { '1', "" }, { '2', "ABC" }, { '3', "DEF" },
+            { '4', "GHI" }, { '5', "JKL" }, { '6', "MNO" },
+            { '7', "PQRS" }, { '8', "TUV" }, { '9', "WXYZ" },
+            { '0', " " } // assuming '0' corresponds to space
+        };
+
+        StringBuilder result = new StringBuilder();
+        char currentButton = '\0';
         int pressCount = 0;
 
-        foreach (char c in input)
+        foreach (char ch in input)
         {
-            if (c == '#') break; // Send button indicates end of input
-
-            if (c == '*')
+            if (ch == '#')
             {
-                // Handle backspace
-                if (output.Length > 0)
-                {
-                    output.Length--;
-                }
-                lastButton = -1;
-                pressCount = 0;
-                continue;
+                // End of input
+                break;
             }
-
-            if (char.IsWhiteSpace(c))
+            else if (ch == '*')
             {
-                // Space indicates a pause, reset last button press tracking
-                if (lastButton != -1)
+                // Backspace
+                if (result.Length > 0)
                 {
-                    string mapping = KeyMappings[lastButton];
-                    if (mapping.Length > 0)
-                    {
-                        output.Append(mapping[(pressCount - 1) % mapping.Length]);
-                    }
+                    result.Length--;
                 }
-                lastButton = -1;
+                // After backspace, we reset the current button and press count
+                currentButton = '\0';
                 pressCount = 0;
-                continue;
             }
-
-            int button = c - '0';
-
-            if (button < 0 || button > 9) continue; // Ignore invalid input
-
-            if (button == lastButton)
+            else if (ch == ' ')
             {
-                pressCount++;
+                // Pause
+                if (currentButton != '\0' && pressCount > 0)
+                {
+                    string letters = keyMap[currentButton];
+                    int index = (pressCount - 1) % letters.Length;
+                    result.Append(letters[index]);
+                }
+                // Reset current button and press count
+                currentButton = '\0';
+                pressCount = 0;
             }
             else
             {
-                if (lastButton != -1)
+                if (ch == currentButton)
                 {
-                    string mapping = KeyMappings[lastButton];
-                    if (mapping.Length > 0)
-                    {
-                        output.Append(mapping[(pressCount - 1) % mapping.Length]);
-                    }
+                    // Same button pressed again
+                    pressCount++;
                 }
-
-                lastButton = button;
-                pressCount = 1;
+                else
+                {
+                    // Different button pressed
+                    if (currentButton != '\0' && pressCount > 0)
+                    {
+                        string letters = keyMap[currentButton];
+                        int index = (pressCount - 1) % letters.Length;
+                        result.Append(letters[index]);
+                    }
+                    // Reset for the new button
+                    currentButton = ch;
+                    pressCount = 1;
+                }
             }
         }
 
-        if (lastButton != -1)
+        // Add the last character if needed
+        if (currentButton != '\0' && pressCount > 0)
         {
-            string mapping = KeyMappings[lastButton];
-            if (mapping.Length > 0)
-            {
-                output.Append(mapping[(pressCount - 1) % mapping.Length]);
-            }
+            string letters = keyMap[currentButton];
+            int index = (pressCount - 1) % letters.Length;
+            result.Append(letters[index]);
         }
 
-        return output.ToString();
+        return result.ToString();
     }
 }
 
@@ -100,8 +91,8 @@ class Program
     static void Main()
     {
         Console.WriteLine(PhonePad.OldPhonePad("33#")); // Output: E
-        Console.WriteLine(PhonePad.OldPhonePad("22#")); // Output: B
+        Console.WriteLine(PhonePad.OldPhonePad("227 *#")); // Output: B
         Console.WriteLine(PhonePad.OldPhonePad("4433555 555666#")); // Output: HELLO
-        Console.WriteLine(PhonePad.OldPhonePad("8 88777444664#")); // Output: TURING
+        Console.WriteLine(PhonePad.OldPhonePad("8 88777444666 *664#")); // Output: TURING
     }
 }
