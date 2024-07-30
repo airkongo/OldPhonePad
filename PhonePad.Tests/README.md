@@ -23,6 +23,4 @@
 2. **Add the test project** to your solution and reference the main project.
 3. **Write and add unit tests** to the `PhonePadTests.cs` file.
 4. **Run the tests** using `dotnet test`.
-5. **Update `README.md`** to include instructions on running the tests.
 
-This organization helps maintain clear separation between your main code and test code, making it easier to manage and extend your project.
