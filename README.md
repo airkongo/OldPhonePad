@@ -50,3 +50,17 @@ The code includes test cases to verify the correctness of the implementation. En
 
 ## Documentation
 The code is documented with comments to explain the logic and implementation details. Please review the code and documentation for a comprehensive understanding.
+
+
+# OldPhonePad
+## Description
+
+This project simulates an old phone keypad, converting input sequences into text.
+
+## Running the Application
+
+To run the application, use:
+
+```sh
+dotnet run --project PhonePad.csproj
+
