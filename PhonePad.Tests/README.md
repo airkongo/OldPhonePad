@@ -1,6 +1,7 @@
 # Steps to Add Unit Tests
-## Create a Test Project
+
 ```sh
+## Create a Test Project
 dotnet new nunit -n PhonePad.Tests
 
 ## Add the Test Project to Solution
