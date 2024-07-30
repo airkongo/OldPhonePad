@@ -1,4 +1,4 @@
-# Old Phone Pad Coding Challenge
+# OldPhonePad Coding Challenge
 ## Description
 This C# application simulates an old phone keypad to convert sequences of button presses into text. The keypad includes letters, a backspace key (*), and a send button (#). Each button on the keypad represents multiple letters, and pressing a button multiple times cycles through the letters associated with that button.
 
@@ -24,7 +24,7 @@ Send Button Handling: Processes the send button (#) to finalize the input and ge
 `public static string OldPhonePad(string input)`
 
 ## Parameters
-input (string): The input string consisting of digits, spaces, backspace (*), and send button (#).
+input (string): The input string consists of digits, spaces, backspace (*), and send button (#).
 
 ##Returns
 A string representing the decoded text from the input.
