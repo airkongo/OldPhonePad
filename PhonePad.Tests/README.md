@@ -4,7 +4,9 @@
 
 ## Add the Test Project to Your Solution
 `dotnet new sln -n OldPhonePad`
+
 `dotnet sln OldPhonePad.sln add PhonePad.csproj`
+
 `dotnet sln OldPhonePad.sln add PhonePad.Tests/PhonePad.Tests.csproj`
 
 ## Add a Reference to the Main Project in the Test Project
