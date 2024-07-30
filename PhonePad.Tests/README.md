@@ -2,7 +2,7 @@
 ## Create a Test Project
 `dotnet new nunit -n PhonePad.Tests`
 
-## Add the Test Project to Your Solution
+## Add the Test Project to Solution
 `dotnet new sln -n OldPhonePad`
 
 `dotnet sln OldPhonePad.sln add PhonePad.csproj`
@@ -14,13 +14,3 @@
 
 ## Run the Tests
 `dotnet test`
-
-
-
-### Summary
-
-1. **Create a new test project** using `dotnet new nunit`.
-2. **Add the test project** to your solution and reference the main project.
-3. **Write and add unit tests** to the `PhonePadTests.cs` file.
-4. **Run the tests** using `dotnet test`.
-
